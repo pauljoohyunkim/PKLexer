@@ -3,7 +3,13 @@ A simple lexer for C++.
 
 This lexer (generator) attempts to be the simplest lexer generators that can be easily integrated into your project.
 
+Note that this is hastily constructed at the moment, so expect a lot of change!
+
 ## Quickstart Guide:
+To use PKLexer, just include **src/pklexer.hpp** onto your project.
+
+We will be going over the example in the **sample** directory.
+
 Suppose you want to get a lexer that can tokenize the following:
 ```
 1 + 2
@@ -16,7 +22,7 @@ enum TokenType
 {
     INTEGER_LITERAL,
     OPERATION_PLUS
-}
+};
 ```
 Note that we can recognize the tokens by the following regular expressions:
 ```
@@ -30,6 +36,7 @@ We are actually almost done!
 Consider the following **sample.cpp**:
 ```
 #include "tokens.hpp"
+#include "../src/pklexer.hpp"
 #include <vector>
 #include <utility>
 #include <string>
@@ -44,7 +51,7 @@ int main()
     {
         {"[0-9]+", INTEGER_LITERAL},
         {"\\+", OPERATION_PLUS}
-    }
+    };
 
     // Finally tokenization step!
     PKLexer<TokenType> lexer { code, regexTokenTypePairs };
@@ -56,3 +63,18 @@ int main()
     return 0;
 }
 ```
+Compile this program by:
+```
+# Either
+g++ -g -Wall sample.cpp -o sample
+# or if you have make:
+make
+```
+then you can set a breakpoint at the *return 0* statement and see if it worked or not.
+
+## Notes
+Currently, there is not much to it.
+Plans at the moment are:
+* Allow strings other than # for comment.
+* Allow multiline comments
+* Throw error when unrecognized things read.
