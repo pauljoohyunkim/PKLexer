@@ -1,6 +1,7 @@
 #ifndef PKLEXER_HPP
 #define PKLEXER_HPP
 
+#include <iostream>
 #include <string>
 #include <vector>
 #include <regex>
@@ -83,8 +84,19 @@ class PKLexer
                         matchRawString = cm.str(0);
                     }
                 }
+
+                if (matched == true)
+                {
                 tokens.push_back(Token<TokenType>(matchTokenType, matchRawString, line));
                 advance(matchLength);
+                }
+                else
+                {
+                    addErrorLine();
+                    std::cerr << "Unrecognized token at line " << line << std::endl;
+                    advanceUntil('\n');
+                    continue;
+                }
             }
         }
 
@@ -98,6 +110,7 @@ class PKLexer
         std::vector<Token<TokenType>> tokens {};
         unsigned int line { 1 };
         std::vector<std::pair<std::string, TokenType>> regexToTokenType;
+        std::vector<unsigned int> errorLines {};
 
         // Helpers:
         bool isAtEnd() { return pos >= codelength; }
@@ -125,7 +138,7 @@ class PKLexer
         {
             regexToTokenType = regexTokenTypePairVector;
         }
-
+        void addErrorLine() { errorLines.push_back(line); }
 };
 
 #endif  // PKLEXER_HPP
