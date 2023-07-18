@@ -31,11 +31,6 @@ class PKLexer
         // Common initialization function
         void init() { pos = 0; line = 1; codelength = codetext.length(); }
 
-        void setRegexTokenTypePairs(std::vector<std::pair<std::string, TokenType>> regexTokenTypePairVector)
-        {
-            regexToTokenType = regexTokenTypePairVector;
-        }
-
         // Tokenize
         void tokenize()
         {
@@ -126,6 +121,11 @@ class PKLexer
             std::smatch sm;
             return std::regex_match(s, sm, whitespaceFilter);
         }
+        void setRegexTokenTypePairs(std::vector<std::pair<std::string, TokenType>> regexTokenTypePairVector)
+        {
+            regexToTokenType = regexTokenTypePairVector;
+        }
+
 };
 
 #endif  // PKLEXER_HPP
