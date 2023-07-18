@@ -15,8 +15,8 @@ int main()
         {"\\+", TT_PLUS}
     };
 
-    PKLexer<TokenType> lexer ("1 + 2");
-    lexer.setRegexTokenTypePairs(r_to_t);
+    PKLexer<TokenType> lexer ("1 + 2", r_to_t);
+    //lexer.setRegexTokenTypePairs(r_to_t);
     lexer.tokenize();
 
     auto tokens = lexer.getTokens();

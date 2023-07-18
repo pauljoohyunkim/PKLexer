@@ -6,8 +6,6 @@
 #include <regex>
 #include <utility>
 
-typedef std::vector<std::pair<std::string, TokenType>> RegexTokenPairs;
-
 template <class TokenType>
 class Token
 {
@@ -27,7 +25,8 @@ class PKLexer
 {
     public:
         // Constructor
-        PKLexer(std::string code) { codetext = code; init(); }
+        PKLexer(std::string code, std::vector<std::pair<std::string, TokenType>> regexTokenTypePairVector)
+        { codetext = code; init(); setRegexTokenTypePairs(regexTokenTypePairVector); }
 
         // Common initialization function
         void init() { pos = 0; line = 1; codelength = codetext.length(); }
