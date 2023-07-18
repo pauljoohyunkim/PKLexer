@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 #include <utility>
-#include "lexer.hpp"
+#include "pklexer.hpp"
 #include "tokens.hpp"
 
 static const std::vector<std::pair<std::string, TokenType>> regexToTokenType = 
@@ -17,7 +17,7 @@ static const std::vector<std::pair<std::string, TokenType>> regexToTokenType =
     {"(true|false)", TT_BOOL_LITERAL}
 };
 
-void Lexer::tokenize()
+void PKLexer::tokenize()
 {
     while (isAtEnd() == false)
     {
@@ -74,7 +74,7 @@ void Lexer::tokenize()
     tokens.push_back(Token(TT_EOF, "", line));
 }
 
-void Lexer::advanceUntil(char c)
+void PKLexer::advanceUntil(char c)
 {
     while (isAtEnd() == false && codetext[pos] != c)
     {
@@ -86,7 +86,7 @@ void Lexer::advanceUntil(char c)
     }
 }
 
-bool Lexer::isWhitespace()
+bool PKLexer::isWhitespace()
 {
     std::string s {codetext[pos]};
     std::regex whitespaceFilter { "\\s" };

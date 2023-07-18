@@ -1,15 +1,15 @@
-#ifndef LEXER_HPP
-#define LEXER_HPP
+#ifndef PKLEXER_HPP
+#define PKLEXER_HPP
 
 #include <string>
 #include <vector>
 #include "tokens.hpp"
 
-class Lexer
+class PKLexer
 {
     public:
         // Constructor
-        Lexer(std::string code) { codetext = code; init(); }
+        PKLexer(std::string code) { codetext = code; init(); }
 
         // Common initialization function
         void init() { pos = 0; line = 1; codelength = codetext.length(); }
@@ -35,4 +35,4 @@ class Lexer
 
 };
 
-#endif  // LEXER_HPP
+#endif  // PKLEXER_HPP
