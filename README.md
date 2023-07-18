@@ -77,4 +77,3 @@ Currently, there is not much to it.
 Plans at the moment are:
 * Allow strings other than # for comment.
 * Allow multiline comments
-* Throw error when unrecognized things read.
