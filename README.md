@@ -28,7 +28,7 @@ Note that we can recognize the tokens by the following regular expressions:
 ```
 /*
 INTEGER_LITERAL: [0-9]+,
-OPERATION_PLUS : +
+OPERATION_PLUS : \+
 */
 ```
 We are actually almost done!
